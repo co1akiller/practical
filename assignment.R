@@ -1,10 +1,16 @@
 
-
+library(testthat)
 prob_y1 <- function(y1, n1, theta) {
   # Calculate the probability of observing y_1 responses in n_1 trials 
   # conditioned on theta
   return(dbinom(y1, n1, theta))
 }
+
+test_that("y1 probs sum to one", {
+  n1 <- 30
+  s <- sum(prob_y1(0:n1, n1,theta=0.5))
+  expect_equal(s, 1)
+})
 
 
 evaluate_design_exact <- function(lambda, gamma, n1, n2, theta) {
@@ -26,6 +32,7 @@ evaluate_design_exact <- function(lambda, gamma, n1, n2, theta) {
   
   sum(n1 * stops * y_1_probs + n2 * (!stops) * y_1_probs)
 }
+
 
 
 alpha <- function(lambda,gamma,n1,n2,theta){
@@ -77,6 +84,7 @@ alpha <- function(lambda,gamma,n1,n2,theta){
   return(mean(Ns))
 }
 
+
 # Type II error
 # beta <- 1-alpha(lambda,gamma,n1,n2,theta)
 # A grid of values to be evaluated:
@@ -114,4 +122,6 @@ for (i in 1:length(theta)){
 }
 # Plot the relationship between theta and expected sample size
 plot(theta,expectation,ylab="sample size")
+
+
 
