@@ -6,6 +6,7 @@ prob_y1 <- function(y1, n1, theta) {
   return(dbinom(y1, n1, theta))
 }
 
+# Check that the probabilities sum to 1.
 test_that("y1 probs sum to one", {
   n1 <- 30
   s <- sum(prob_y1(0:n1, n1,theta=0.5))
