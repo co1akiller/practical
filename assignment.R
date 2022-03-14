@@ -110,6 +110,13 @@ proc.time() - ptm
 # Merge by column 
 a <- cbind(to_eval,exp_n) 
 
+# Delete the missing values
+a <- na.omit(a)
+
+# Find the row with minimal sample size
+min(a$exp_n)
+which(a$exp_n==min(a$exp_n))
+a[which(a$exp_n==min(a$exp_n)),]
 
 # Create a vector with values of theta
 theta <- seq(0,1,0.01)
