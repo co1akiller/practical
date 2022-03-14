@@ -1,5 +1,4 @@
 
-library(testthat)
 prob_y1 <- function(y1, n1, theta) {
   # Calculate the probability of observing y_1 responses in n_1 trials 
   # conditioned on theta
